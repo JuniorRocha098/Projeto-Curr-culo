@@ -13,10 +13,271 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <!-- Preload de imagem opcional -->
-  <link rel="preload" href="./assets/img/Design-sem-nome.png" as="image" />
+  <link rel="preload" href="assets/img/Design-sem-nome.png" as="image" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="Css-Js Pag-Certificado/styles.css">
+  <!-- CSS (embutido) -->
+  <style>
+:root{
+  --bg1:#061021; --bg2:#0a1b38; --fg:#ffffff;
+  --c1:#00c6ff; --c2:#0066ff;
+  --muted:#a9b0c0;
+  --glass:rgba(255,255,255,.06);
+  --radius:14px;
+
+  /* Largura do container (fluida) */
+  --wrap: 1100px;
+
+  /* Proporções padrão por dispositivo */
+  --ratio-desktop: 16 / 9;
+  --ratio-tablet:  4 / 3;
+  --ratio-phone:   3 / 4;
+
+  /* Proporção ativa (muda com media queries) */
+  --ratio: 16 / 9;
+}
+
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:var(--fg);
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background: linear-gradient(180deg,var(--bg1),var(--bg2));
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  text-align:left;
+  line-height:1.6;
+}
+.wrap{
+  max-width:min(var(--wrap), 96vw);
+  margin:auto; padding:24px;
+}
+a{color:inherit}
+
+/* Títulos e textos */
+h1,h2,h3,h4{margin:0 0 .5rem; line-height:1.25; text-align:left}
+p,li{margin:0 0 .75rem}
+.muted-blurb{opacity:.85}
+
+/* ===== Header + Menu dinâmico ===== */
+.site-header{
+  position:sticky; top:0; z-index:40;
+  background:rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-row{display:flex; align-items:center; justify-content:space-between; gap:14px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+.logo{
+  width:42px; height:42px; border-radius:12px;
+  display:grid; place-items:center; font-weight:900;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  box-shadow:0 0 18px rgba(0,102,255,.35);
+}
+.t{font-weight:800; line-height:1}
+.s{opacity:.8; font-size:.9rem}
+.nav-links{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  text-align:left;
+}
+.nav-links a{
+  text-decoration:none; padding:10px 12px; border-radius:10px;
+  border:1px solid transparent; text-align:left;
+}
+.nav-links a:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.12)}
+.cta-btn{
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  font-weight:800; border-color:transparent;
+}
+
+/* ===== Hamburguer ===== */
+.menu-toggle{
+  display:none; width:44px; height:44px; border:none; background:transparent; cursor:pointer; border-radius:10px;
+  position:relative;
+}
+.menu-toggle:hover{background:rgba(255,255,255,.08)}
+.menu-toggle .line{
+  position:absolute; left:10px; right:10px; height:2px; background:#fff; border-radius:2px; transition:.2s;
+}
+.menu-toggle .line:nth-child(1){ top:14px }
+.menu-toggle .line:nth-child(2){ top:21px }
+.menu-toggle .line:nth-child(3){ top:28px }
+html.nav-open .menu-toggle .line:nth-child(1){ top:21px; transform:rotate(45deg) }
+html.nav-open .menu-toggle .line:nth-child(2){ opacity:0 }
+html.nav-open .menu-toggle .line:nth-child(3){ top:21px; transform:rotate(-45deg) }
+
+.nav-backdrop{position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:39}
+.nav-backdrop[hidden]{display:none}
+
+/* Drawer responsivo */
+@media (max-width: 980px){
+  .menu-toggle{display:inline-block}
+  .nav-links{
+    position:fixed; z-index:40; top:0; right:0;
+    width:min(320px,88vw); height:100dvh;
+    background:rgba(10,20,40,.98);
+    border-left:1px solid rgba(255,255,255,.08);
+    box-shadow:-8px 0 32px rgba(0,0,0,.35);
+    padding:80px 18px 18px;
+    display:flex; flex-direction:column; gap:8px;
+    align-items:stretch;
+    transform:translateX(100%); transition:transform .25s ease;
+  }
+  html.nav-open .nav-links{ transform:translateX(0) }
+  .nav-links a{
+    border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03);
+    text-align:left;
+  }
+  .cta-btn{ border:1px solid transparent }
+}
+
+/* ===== Hero ===== */
+.hero{ padding:40px 0 8px; }
+.section-title{
+  margin:0 0 8px; font-size:clamp(22px,3.6vw,36px);
+  background:linear-gradient(90deg,var(--c1),var(--c2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  text-align:left;
+}
+
+/* ===== Cards ===== */
+.content{padding:10px 0 30px}
+.cards-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:16px;
+}
+.card{
+  position:relative; border-radius:var(--radius); overflow:hidden;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  transition:.22s ease;
+  display:flex; flex-direction:column;
+}
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.35), 0 0 24px rgba(0,114,255,.28);
+  border-color: rgba(0,198,255,.45);
+}
+.tag{
+  position:absolute; top:10px; left:10px; padding:6px 10px; border-radius:999px;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+  font-size:.82rem; font-weight:800
+}
+.card-body{
+  padding:18px 16px 10px;
+  text-align:left;
+  flex:1;
+}
+.card-body h4{ margin:0 0 6px; font-size:1.05rem; text-align:left }
+.card-body p{ margin:0; opacity:.9; text-align:left }
+.card-actions{
+  display:flex; gap:8px; padding:0 16px 16px 16px; flex-wrap:wrap;
+  margin-top:auto;
+  justify-content:flex-start;
+}
+
+.btn-primary{
+  appearance:none; border:none; cursor:pointer;
+  padding:10px 12px; border-radius:10px; font-weight:800; color:var(--fg);
+  background: linear-gradient(90deg,var(--c1),var(--c2));
+  text-decoration:none; display:inline-block;
+}
+.btn-outline{
+  text-decoration:none; padding:10px 12px; border-radius:10px; font-weight:700; color:var(--fg);
+  border:1px solid rgba(255,255,255,.18); background:transparent;
+}
+.btn-outline:hover{ background:rgba(255,255,255,.06) }
+.btn-primary:hover{ filter:saturate(1.1) brightness(1.04) }
+
+/* ===== Contato ===== */
+.contact-grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:16px; align-items:start;
+}
+.contact-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--radius);
+  padding:18px;
+  text-align:left;
+}
+.contact-list{margin:10px 0 0; padding-left:18px}
+.contact-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+
+@media (max-width: 900px){
+  .contact-grid{ grid-template-columns:1fr }
+}
+
+/* ===== Footer ===== */
+footer{ padding:24px 0; border-top:1px solid rgba(255,255,255,.08); }
+.footer-row{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  text-align:left;
+}
+.small{ font-size:.9rem }
+.muted{ opacity:.8 }
+
+/* ===== Modal ===== */
+.modal{
+  position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:50;
+  background:rgba(0,0,0,.75);
+}
+.modal.show{ display:flex }
+.modal-card{
+  width:min(980px,94vw);
+  background:rgba(10,20,40,.92);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px; overflow:hidden;
+  box-shadow:0 0 36px rgba(0,114,255,.32);
+  position:relative;
+  text-align:left;
+}
+.modal-close{
+  position:absolute; right:12px; top:10px;
+  background:transparent; border:1px solid rgba(255,255,255,.18); color:#fff;
+  border-radius:10px; padding:8px 10px; cursor:pointer;
+}
+.modal-close:hover{ background:rgba(255,255,255,.08) }
+#modalContent{ padding:18px }
+
+/* ===== Mídia com proporção fluida ===== */
+.media-box,
+.cert-media{
+  aspect-ratio: var(--ratio);
+  background:
+    radial-gradient(80% 80% at 10% 10%, rgba(0,198,255,.18), transparent),
+    radial-gradient(80% 80% at 90% 20%, rgba(0,102,255,.18), transparent),
+    linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.10); border-radius:12px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; color:#fff; font-size:48px;
+}
+.media-box > img,
+.media-box > iframe,
+.media-box > video,
+.cert-media > img,
+.cert-media > iframe,
+.cert-media > video{
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+  aspect-ratio:inherit;
+}
+
+/* ===== Proporção ativa por breakpoint ===== */
+@media (max-width: 980px){
+  :root{ --ratio: var(--ratio-tablet); }
+  .wrap{ max-width:min(1000px, 96vw); }
+}
+@media (max-width: 640px){
+  :root{ --ratio: var(--ratio-phone); }
+  .wrap{ max-width:min(680px, 94vw); padding:18px; }
+}
+
+/* ===== Acessibilidade ===== */
+:focus-visible{ outline:3px solid rgba(0,198,255,.6); outline-offset:2px }
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important }
+}
+  </style>
 </head>
 <body>
 
@@ -34,7 +295,7 @@
       <nav id="site-nav" class="nav-links" aria-label="Menu principal">
         <a href="index.html">Início</a>
         <a href="projetos.html">Projetos</a>
-        <a class="cta-btn" href="Curriculo/CV Kleber Lago.pdf" download="Kleber_S_Lago_CV.pdf">Baixar Currículo</a>
+        <a class="cta-btn" href="Curriculo/CV-Kleber-Lago.pdf" download="Kleber_S_Lago_CV.pdf">Baixar Currículo</a>
       </nav>
 
       <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-label="Abrir menu">
@@ -63,13 +324,13 @@
       <article class="card" role="listitem">
         <div class="tag">Conclusão</div><br><br>
         <div class="card-body">
-          <h4>Faculdade de Comunicação e Markenting</h4>
+          <h4>Faculdade de Comunicação e Marketing</h4>
           <p>Planejamento e otimização de campanhas, testes A/B, mensuração e atribuição.</p>
         </div>
         <div class="card-actions">
-          <a class="btn-outline" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Certificado\imgs\certificates\WhatsApp Image 2025-08-13 at 14.11.40.jpeg" target="_blank" rel="noopener">Ver PDF</a>
-          <a class="btn-outline" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Certificado\imgs\certificates\WhatsApp Image 2025-08-13 at 14.11.40.jpeg" download="facebook-marketing.pdf">Baixar</a>
-          
+          <a class="btn-outline" href="assets/certificates/faculdade.pdf" target="_blank" rel="noopener">Ver PDF</a>
+          <a class="btn-outline" href="assets/certificates/faculdade.pdf" download="faculdade.pdf">Baixar</a>
+          <a class="btn-primary" data-cert="meta" href="javascript:void(0)">Detalhes</a>
         </div>
       </article>
 
@@ -77,41 +338,41 @@
       <article class="card" role="listitem">
         <div class="tag">Google</div><br><br>
         <div class="card-body">
-          <h4>Google ADS</h4>
+          <h4>Google Ads</h4>
           <p>Métricas, eventos, funis e análise de desempenho com foco em ROI.</p>
         </div>
         <div class="card-actions">
-          <a class="btn-outline" href="Css-Js Pag-Certificado/imgs/certificates/Google Ads.pdf" target="_blank" rel="noopener">Ver PDF</a>
-          <a class="btn-outline" href="Css-Js Pag-Certificado/imgs/certificates/Google Ads.pdf" download="Certificado_GA.pdf">Baixar</a>
-          
+          <a class="btn-outline" href="assets/certificates/google-ads.pdf" target="_blank" rel="noopener">Ver PDF</a>
+          <a class="btn-outline" href="assets/certificates/google-ads.pdf" download="Certificado_Google_Ads.pdf">Baixar</a>
+          <a class="btn-primary" data-cert="ga" href="javascript:void(0)">Detalhes</a>
         </div>
       </article>
 
       <!-- CARD 3 -->
       <article class="card" role="listitem">
-        <div class="tag">Inatagram ADS</div><br><br>
+        <div class="tag">Conteúdo</div><br><br>
         <div class="card-body">
           <h4>Content Marketing Certification</h4>
           <p>Estratégia de conteúdo, SEO on-page e nutrição de leads.</p>
         </div>
         <div class="card-actions">
-          <a class="btn-outline" href="Css-Js Pag-Certificado/imgs/certificates/Instagram Ads.pdf" target="_blank" rel="noopener">Ver PDF</a>
-          <a class="btn-outline" href="Css-Js Pag-Certificado/imgs/certificates/Instagram Ads.pdf" download="Certificado_HubSpot_Content.pdf">Baixar</a>
-        
+          <a class="btn-outline" href="assets/certificates/content-marketing.pdf" target="_blank" rel="noopener">Ver PDF</a>
+          <a class="btn-outline" href="assets/certificates/content-marketing.pdf" download="Certificado_Content_Marketing.pdf">Baixar</a>
+          <a class="btn-primary" data-cert="hubspot" href="javascript:void(0)">Detalhes</a>
         </div>
       </article>
 
       <!-- CARD 4 -->
       <article class="card" role="listitem">
-        <div class="tag">YouTube</div><br><br>
+        <div class="tag">Estratégia</div><br><br>
         <div class="card-body">
           <h4>Marketing Strategy</h4>
           <p>Posicionamento, proposta de valor e growth alavancado por dados.</p>
         </div>
         <div class="card-actions">
-          <a class="btn-outline" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Certificado\imgs\certificates\YouTuber.pdf" target="_blank" rel="noopener">Ver PDF</a>
-          <a class="btn-outline" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Certificado\imgs\certificates\YouTuber.pdf" download="marketing-strategy.pdf">Baixar</a>
-        
+          <a class="btn-outline" href="assets/certificates/marketing-strategy.pdf" target="_blank" rel="noopener">Ver PDF</a>
+          <a class="btn-outline" href="assets/certificates/marketing-strategy.pdf" download="marketing-strategy.pdf">Baixar</a>
+          <a class="btn-primary" data-cert="coursera" href="javascript:void(0)">Detalhes</a>
         </div>
       </article>
     </div>
@@ -166,22 +427,146 @@
     </div>
   </div>
 
-  <!-- JS -->
-  <script src="Css-Js Pag-Certificado/script.js" defer></script>
+  <!-- JS (embutido) -->
+  <script>
+/* ===== helpers ===== */
+const $  = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+
+/* ===== Menu dinâmico (drawer) ===== */
+const menuToggle  = $("#menuToggle");
+const navBackdrop = $("#navBackdrop");
+const siteNav     = $("#site-nav");
+
+function openMenu(){
+  document.documentElement.classList.add("nav-open");
+  menuToggle.setAttribute("aria-expanded","true");
+  if (navBackdrop) navBackdrop.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closeMenu(){
+  document.documentElement.classList.remove("nav-open");
+  menuToggle.setAttribute("aria-expanded","false");
+  if (navBackdrop) navBackdrop.hidden = true;
+  document.body.style.overflow = "";
+}
+menuToggle.addEventListener("click", ()=>{
+  const open = document.documentElement.classList.contains("nav-open");
+  open ? closeMenu() : openMenu();
+});
+if (navBackdrop) navBackdrop.addEventListener("click", closeMenu);
+$$("#site-nav a").forEach(a => a.addEventListener("click", closeMenu));
+document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeMenu(); });
+window.addEventListener("resize", ()=>{ if (window.innerWidth > 980) closeMenu(); });
+document.addEventListener("pointerdown", (e)=>{
+  if (!document.documentElement.classList.contains("nav-open")) return;
+  if (siteNav && siteNav.contains(e.target)) return;
+  if (menuToggle && menuToggle.contains(e.target)) return;
+  closeMenu();
+});
+
+/* ===== Footer: ano corrente ===== */
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ===== Modal de detalhes ===== */
+const modal        = $("#modal");
+const modalClose   = $("#modalClose");
+const modalContent = $("#modalContent");
+
+function openModal(html){
+  modalContent.innerHTML = html;
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+  modalClose.focus();
+}
+function closeModal(){
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+if (modalClose) modalClose.addEventListener("click", closeModal);
+if (modal) {
+  modal.addEventListener("click", (e)=>{ if (e.target === modal) closeModal(); });
+}
+document.addEventListener("keydown", (e)=>{ if (e.key === "Escape" && modal && modal.classList.contains("show")) closeModal(); });
+
+/* ===== Conteúdos do modal por certificado ===== */
+const CERT_DETAILS = {
+  meta: {
+    titulo: "Faculdade de Comunicação e Marketing",
+    texto: "Planejamento de campanhas, estruturação de conjuntos/ads, testes A/B, orçamento, mensuração (CPA/ROAS) e atribuição.",
+    img: "assets/img/Design-sem-nome.png",
+    itens: [
+      "Configuração de pixel/conversions API",
+      "Estratégias de criativos e segmentações",
+      "Leitura de relatórios e otimização contínua"
+    ],
+    pdf: "assets/certificates/faculdade.pdf"
+  },
+  ga: {
+    titulo: "Google Ads Certification",
+    texto: "Métricas, eventos e funis; análise de desempenho e tomada de decisão orientada a dados.",
+    img: "assets/img/Design-sem-nome.png",
+    itens: [
+      "Explorações, públicos e funis",
+      "Atribuição e medição de ROI",
+      "Integrações com Analytics e Looker Studio"
+    ],
+    pdf: "assets/certificates/google-ads.pdf"
+  },
+  hubspot: {
+    titulo: "Content Marketing Certification",
+    texto: "Estratégia de conteúdo, SEO on-page, calendário editorial e nutrição de leads.",
+    img: "assets/img/Design-sem-nome.png",
+    itens: [
+      "Pilares e clusters de conteúdo",
+      "Copywriting e otimização on-page",
+      "Fluxos de e-mail e lead scoring"
+    ],
+    pdf: "assets/certificates/content-marketing.pdf"
+  },
+  coursera: {
+    titulo: "Marketing Strategy",
+    texto: "Posicionamento, proposta de valor e growth guiado por dados.",
+    img: "assets/img/Design-sem-nome.png",
+    itens: [
+      "Pesquisa, personas e JTBD",
+      "Go-to-market & diferenciação",
+      "Medição e experimentação"
+    ],
+    pdf: "assets/certificates/marketing-strategy.pdf"
+  }
+};
+
+/* Abre modal pelos botões 'Detalhes' */
+$$(".btn-primary[data-cert]").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const key = btn.getAttribute("data-cert");
+    const c = CERT_DETAILS[key];
+    if(!c) return;
+
+    const media = c.img
+      ? `<div class="cert-media"><img src="${c.img}" alt="Certificado: ${c.titulo}"></div>`
+      : `<div class="cert-media" aria-label="Prévia do certificado">🧾</div>`;
+
+    const html = `
+      <div class="cert-detail" style="display:grid; gap:14px; grid-template-columns:1fr 1fr; align-items:start">
+        ${media}
+        <div class="cert-info">
+          <h2 class="section-title" style="margin:0 0 6px">${c.titulo}</h2>
+          <p class="muted-blurb" style="margin:0 0 10px">${c.texto}</p>
+          <ul>${c.itens.map(i=>`<li>${i}</li>`).join("")}</ul>
+          <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap">
+            <a class="btn-primary" href="${c.pdf}" target="_blank" rel="noopener">Abrir PDF</a>
+            <a class="btn-outline" href="${c.pdf}" download>Baixar</a>
+          </div>
+        </div>
+      </div>`;
+    openModal(html);
+  });
+});
+  </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
