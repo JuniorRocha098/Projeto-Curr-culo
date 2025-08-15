@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Kleber S. Lago — Marketing & Conteúdo</title>
+  <meta name="description" content="Kleber S. Lago — Marketing Digital, conteúdo, redação publicitária e projetos de lançamento. Consultoria, campanhas e gestão de tráfego."/>
+  <!-- 🔗 CSS (use caminho relativo no projeto) -->
+  <link rel="stylesheet" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Inicial\styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header aria-label="Cabeçalho principal" class="site-header">
+    <div class="nav-row wrap">
+      <a class="brand" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\index.html">
+        <div class="logo">KS</div>
+        <div>
+          <div class="t">Kleber S. Lago</div>
+          <div class="s">Marketing & Conteúdo</div>
+        </div>
+      </a>
+
+      <!-- Menu -->
+      <nav id="site-nav" class="nav-links" aria-label="Menu principal">
+        <a href="#home">Início</a>
+         <a href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Curriculo\CV Kleber Lago.pdf" download="Kleber_S_Lago_CV.pdf">Baixar Currículo</a>
+        <a href="./projetos.html">Projetos</a>
+        <a class="cta-btn" href="https://wa.me/5511973367068" target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+
+      <!-- Botão hamburguer (aparece no mobile) -->
+      <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav">☰</button>
+    </div>
+  </header>
+  <!-- Backdrop (mobile) -->
+  <div id="navBackdrop" class="nav-backdrop" hidden></div>
+
+  <!-- HERO / PERFIL -->
+  <main class="hero" id="home" role="main">
+    <div class="hero-grid wrap">
+      <aside class="profile" aria-labelledby="profile-name">
+        <!-- 🔁 troque pela sua imagem -->
+        <img class="avatar" src="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Foto de Perfil\Design sem nome.png" alt="Foto de Kleber S. Lago — Coordenador de Marketing">
+        <div id="profile-name" class="name">Kleber S. Lago</div>
+        <div class="role">Graduado em Comunicação e Marketing (FAAP) — Coordenador de Marketing e Conteúdo</div>
+
+        <p class="muted-blurb">
+          Mais de uma década de experiência em produção de conteúdo, redação publicitária, gestão de mídias sociais e lançamentos.
+        </p>
+
+        <div class="socials">
+          <a href="https://www.instagram.com/klesalles/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/in/kleber-s-lago/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://wa.me/5511973367068" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </aside>
+
+      <section class="hero-intro" aria-labelledby="intro-title">
+        <h1 id="intro-title">Marketing digital com estratégia, conteúdo e resultado</h1>
+        <p>
+          Experiência prática com grandes veículos (Exame, Terra, RedeTV!, Veja) e em empresas como Turotest (CentroMotion),
+          Phytus Farma e OficialFarma. Trabalho com campanhas, e-mail marketing, inbound, SEO e estratégia com foco em conversão
+          e mensuração de resultados.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="openWhatsApp()">Fale por WhatsApp</button>
+          <a class="btn-outline" href="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Certificado\Certificados.html">Ver certificados</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- SERVICES -->
+  <section id="services" class="content wrap" aria-labelledby="services-title">
+    <h2 class="section-title" id="services-title">Serviços</h2>
+    <div class="services-grid" role="list">
+      <div class="service" role="listitem">
+        <h3>Produção de Conteúdo</h3>
+        <p>Textos para redes, e-commerce, blogs e e-mails com foco em copy e SEO para conversão.</p>
+      </div>
+      <div class="service" role="listitem">
+        <h3>E-mail Marketing & Automação</h3>
+        <p>Criação de campanhas, segmentação e disparos com relatórios de performance e otimização.</p>
+      </div>
+      <div class="service" role="listitem">
+        <h3>Gestão de Campanhas & Tráfego</h3>
+        <p>Planejamento e execução de campanhas pagas, otimização de funil e análise de ROI.</p>
+      </div>
+      <div class="service" role="listitem">
+        <h3>Influenciadores & Parcerias</h3>
+        <p>Seleção, negociação e gestão de influenciadores com análise de compatibilidade e performance.</p>
+      </div>
+      <div class="service" role="listitem">
+        <h3>Branding & Lançamentos</h3>
+        <p>Posicionamento, tom de voz, criação de materiais e coordenação de lançamentos multiplataforma.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases" class="content wrap" aria-labelledby="cases-title">
+    <h2 class="section-title" id="cases-title">Cases e Projetos</h2>
+
+    <div class="cards-grid">
+      <article class="card">
+        <div class="tag">Turotest — CentroMotion</div>
+        <h4>E-mail Marketing & Conteúdo técnico</h4>
+        <p>Produção de e-mails informativos e promocionais para público B2B, destacando qualidade e aplicações dos produtos para montadoras e indústrias.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Phytus Farma</div>
+        <h4>Lançamento de produto & estratégia digital</h4>
+        <p>Pesquisa de mercado, planejamento de lançamento e campanhas educativas para apresentar um suplemento clinicamente comprovado.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">OficialFarma / Campanhas</div>
+        <h4>Campanhas sazonais & Influenciadores</h4>
+        <p>Campanhas como “A mãe tá on” e gestão de influenciadores — desde seleção até análise de ROI e otimização de anúncios.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Roundtable / E-mail</div>
+        <h4>E-mail Marketing para cursos</h4>
+        <p>Criação de creatives e copy para divulgação de cursos com foco em inscrições e engajamento.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Influenciadores</div>
+        <h4>Parcerias e resultados</h4>
+        <p>Trabalhos com Angela Borges, Esteban Velasquez, Tenente Breno e outros — contratação, produção e mensuração.</p>
+      </article>
+
+      <article class="card">
+        <div class="tag">Conteúdo Editorial</div>
+        <h4>Artigos e matérias</h4>
+        <p>Textos publicados em blogs e veículos como Exame, Terra, Veja e outros — produção e otimização para posicionamento.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="content wrap" aria-labelledby="contact-title">
+    <h2 class="section-title" id="contact-title">Contato</h2>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Vamos conversar?</h3>
+        <p class="muted">Consultoria, projetos ou contratações — respondo rápido pelo WhatsApp.</p>
+        <ul class="contact-list" aria-label="Informações de contato">
+          <li><strong>Email:</strong> <a href="mailto:contato@kleberlago.com.br" class="muted">contato@kleberlago.com.br</a></li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/5511973367068" target="_blank" rel="noopener">+55 (11) 97336-7068</a></li>
+          <li><strong>Instagram:</strong> <a href="https://www.instagram.com/klesalles/" target="_blank" rel="noopener">@klesalles</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/kleber-s-lago/" target="_blank" rel="noopener">kleber-s-lago</a></li>
+        </ul>
+      </div>
+
+      <aside class="contact-card" aria-label="Envie uma mensagem">
+        <h3>Envie uma mensagem</h3>
+        <p class="muted">Prefere algo rápido? Me chame no WhatsApp ou envie um e-mail. 👍</p>
+        <div class="contact-actions">
+          <a class="btn-primary" href="https://wa.me/5511973367068" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="btn-outline" href="mailto:contato@kleberlago.com.br">Enviar e-mail</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-row">
+      <div>
+        <strong>Kleber S. Lago</strong>
+        <div class="small muted">Marketing & Conteúdo • © 2025</div>
+      </div>
+      <div class="small muted">Links: <a href="https://www.instagram.com/klesalles/" target="_blank" rel="noopener">@klesalles</a> • <a href="https://www.linkedin.com/in/kleber-s-lago/" target="_blank" rel="noopener">LinkedIn</a></div>
+    </div>
+  </footer>
+
+  <!-- 🔗 JS -->
+  <script src="C:\Users\Coneccta Sistemas\Desktop\Projeto Binho\Css-Js Pag-Inicial\script.js" defer></script>
+</body>
+</html>
